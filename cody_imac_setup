@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "🚀 Clay님의 교육장 아이맥 즉시 세팅을 시작합니다! (로그아웃 안 함)"
+
+# 1. 마우스 및 트랙패드 설정 (자연스러운 스크롤 해제)
+echo "🖱️ 마우스 및 트랙패드 자연스러운 스크롤 해제 중..."
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write com.apple.AppleMultitouchTrackpad TrackpadScroll -bool false
+
+# 2. 키보드 설정 (보내주신 수치 2와 25 그대로 적용)
+echo "⌨️ 키보드 반응 속도 세팅 중..."
+defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
+
+# 3. 언어 및 지역 설정 (한국어 - 기본 / 영어 - 서브)
+echo "🌐 기본 언어를 대한민국/한국어로 변경 중..."
+defaults write NSGlobalDomain AppleLanguages -array "ko-KR" "en-US"
+defaults write NSGlobalDomain AppleLocale -string "ko_KR"
+
+# 4. 로그아웃 없이 "즉시 반영"하기 위한 강제 새로고침
+echo "🔄 로그아웃 없이 세팅을 즉시 반영합니다..."
+killall cfprefsd
+killall Finder
+killall Dock
+
+export LANG=ko_KR.UTF-8
+export LC_ALL=ko_KR.UTF-8
+
+echo "----------------------------------------------------"
+echo "✅ Clay님 맞춤 세팅이 눈앞에 즉시 적용되었습니다!"
+echo "💡 이제 로그아웃 절대 하지 마시고 바로 쓰시면 됩니다."
+echo "----------------------------------------------------"
+
+# 1초 뒤 입력 소스(구름 입력기) 창을 띄워줍니다. 여기서 [+]만 클릭해 주세요!
+sleep 1
+open "x-apple.systempreferences:com.apple.Keyboard-Settings.Extension?KeyboardLayouts"
